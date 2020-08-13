@@ -88,7 +88,7 @@ void turn1(motor_port_t turnMotor, int startSpeed, bool brakeOtherMotor, int max
       double otherSpeed = (abs(startSpeed) - (abs(ev3_motor_get_counts(otherMotor) - resetOtherMotor) / OMbrakeDistance) * abs(startSpeed - endSpeed)) * (maxSpeed / abs(maxSpeed));
       //(Startspeed - prozentual zurückgelegte Bresmstrecke * zu bremsende Geschwindidkeit) * vorwärts oder rückwärts aus maxSpeed
       motorControl(otherMotor, otherSpeed, maxSpeed);
-      cout << "DEC: " << otherSpeed << endl;
+      //cout << "DEC: " << otherSpeed << endl;
     }
 
     if (stop == false) //Beschleunigen otherMotor am Ende
@@ -437,7 +437,7 @@ int line2(int startSpeed, int maxSpeed, double pGain, double dGain, std::string 
       continueMove = lineDetection(mode) == false;
       if (continueMove == false)
       {
-        ev3_speaker_play_tone(NOTE_F4, 3);
+        //ev3_speaker_play_tone(NOTE_F4, 3);
       }
     }
 
@@ -598,7 +598,7 @@ int line1(int startSpeed, int maxSpeed, double pGain, double dGain, sensor_port_
       continueMove = lineDetection(mode) == false;
       if (continueMove == false)
       {
-        ev3_speaker_play_tone(NOTE_F4, 3);
+        //ev3_speaker_play_tone(NOTE_F4, 3);
       }
     }
 
@@ -742,7 +742,7 @@ void mediumMotor(motor_port_t mediumMotor, int mediumMotorSpeed, std::string med
       continueMediumMotor = move.getTime() < mediumMotorWert;
     }
 
-    if (stall.detectStall() && move.getTime() > 300 && !(mediumMotorMode == "time" && mediumMotor == longMotor))
+    if (stall.detectStall() && move.getTime() > 450 && !(mediumMotorMode == "time" && mediumMotor == longMotor))
     {
       continueMediumMotor = false;
       ev3_motor_stop(mediumMotor, mediumMotorStop);
